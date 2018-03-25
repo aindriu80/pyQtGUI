@@ -17,19 +17,36 @@ ApplicationWindow {
         width: parent.width
 
         Rectangle {
+            id: myrectangle
             height: {
                 console.log("I am a comment")
                 return 160
             }
+            width: parent.width
 
             color: "#ff0000"
 
             Text {
+                id: mainText
                 text: "I am regular text"
                 height: 50
                 width: parent.width
                 font.pixelSize: 12
+                horizontalAlignment: Text.AlignHCenter
+                color: "#aaa"
+            }
 
+            Button {
+                id: mainbutton
+                text: "Push Me"
+                anchors.top: mainText.bottom
+                onClicked: {
+                    console.log(myrectangle.color)
+                    if(myrectangle.color == "#000000"){
+                        myrectangle.color = "#f00"
+                    }else
+                        myrectangle.color = "#000"
+                }
             }
 
         }
