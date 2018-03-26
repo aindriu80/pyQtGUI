@@ -1,15 +1,34 @@
-#!/user/bin/python3
+import sys
+from PyQt5.QtWidgets import (QWidget, QApplication,
+                             QHBoxLayout, QVBoxLayout, QPushButton, QLabel)
 
-import os, sys
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtQuick import *
-from PyQt5.Qt import *
+class MainWindow(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.init_ui()
 
-if __name__ == "__main__":
+    def init_ui(self):
+        label = QLabel("Hi there I am a label. Wooh.")
+        okButton = QPushButton("OK")
+        cancelButton = QPushButton("Cancel")
+
+        horizontal = QHBoxLayout()
+        horizontal.addStretch()
+
+        horizontal.addWidget(okButton)
+        horizontal.addWidget(cancelButton)
+
+        vertical = QVBoxLayout()
+        vertical.addWidget(label)
+        vertical.addStretch(1)
+        vertical.addLayout(horizontal)
+
+        self.setLayout(vertical)
+
+        self.setWindowTitle("Horizontal Layout")
+        self.show()
+
+if __name__ == '__main__':
     app = QApplication(sys.argv)
-
-    engine = QQmlApplicationEngine()
-    engine.load(QUrl.fromLocalFile("main.qml"))
-
+    window = MainWindow()
     sys.exit(app.exec_())
