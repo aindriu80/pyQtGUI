@@ -1,6 +1,6 @@
 import sys
 from PyQt5.QtWidgets import (QWidget, QApplication,
-                             QHBoxLayout, QVBoxLayout, QPushButton, QLabel)
+                             QHBoxLayout, QVBoxLayout, QPushButton, QLabel, QLineEdit)
 
 class MainWindow(QWidget):
     def __init__(self):
@@ -8,22 +8,40 @@ class MainWindow(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        label = QLabel("Hi there I am a label. Wooh.")
-        okButton = QPushButton("OK")
-        cancelButton = QPushButton("Cancel")
+        # label = QLabel("Hi there I am a label. Wooh.")
+        # okButton = QPushButton("OK")
+        # cancelButton = QPushButton("Cancel")
+        #
+        # horizontal = QHBoxLayout()
+        # horizontal.addStretch()
+        #
+        # horizontal.addWidget(okButton)
+        # horizontal.addWidget(cancelButton)
+        #
+        # vertical = QVBoxLayout()
+        # vertical.addWidget(label)
+        # vertical.addStretch(1)
+        # vertical.addLayout(horizontal)
+        #
+        # self.setLayout(vertical)
 
-        horizontal = QHBoxLayout()
-        horizontal.addStretch()
+        label = QLabel("Name: ")
+        name_input = QLineEdit()
+        button = QPushButton("Set Name")
 
-        horizontal.addWidget(okButton)
-        horizontal.addWidget(cancelButton)
+        h = QHBoxLayout()
+        # h.addStretch(1)
+        h.addWidget(label)
+        h.addWidget(name_input)
 
-        vertical = QVBoxLayout()
-        vertical.addWidget(label)
-        vertical.addStretch(1)
-        vertical.addLayout(horizontal)
+        v = QVBoxLayout()
+        # v.addStretch(1)
+        v.addLayout(h)
+        v.addWidget(button)
 
-        self.setLayout(vertical)
+        self.setLayout(v)
+
+
 
         self.setWindowTitle("Horizontal Layout")
         self.show()
