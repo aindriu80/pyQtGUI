@@ -6,6 +6,7 @@ class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.init_ui()
+        self.counter = 0
 
     def init_ui(self):
         # label = QLabel("Hi there I am a label. Wooh.")
@@ -27,7 +28,9 @@ class MainWindow(QWidget):
 
         label = QLabel("Name: ")
         name_input = QLineEdit()
-        button = QPushButton("Set Name")
+        self.button = QPushButton("Clicked:")
+        self.button.pressed.connect(self.pressButton)
+        self.button.clicked.connect(self.clickedButton)
 
         h = QHBoxLayout()
         # h.addStretch(1)
@@ -37,7 +40,7 @@ class MainWindow(QWidget):
         v = QVBoxLayout()
         # v.addStretch(1)
         v.addLayout(h)
-        v.addWidget(button)
+        v.addWidget(self.button)
 
         self.setLayout(v)
 
@@ -45,6 +48,14 @@ class MainWindow(QWidget):
 
         self.setWindowTitle("Horizontal Layout")
         self.show()
+
+    def clickedButton(self):
+        print("this button has been clicked - released")
+
+    def pressButton(self):
+        print("Button has been pressed")
+        self.counter += 1
+        self.button.setText("Clicked:"+  str(self.counter))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
