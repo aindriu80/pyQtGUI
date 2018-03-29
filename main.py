@@ -25,19 +25,23 @@ class MainWindow(QWidget):
         # vertical.addLayout(horizontal)
         #
         # self.setLayout(vertical)
-
-        label = QLabel("Name: ")
-        name_input = QLineEdit()
+        self.text_label = QLabel("There has not been no name entered, so i can't do anything yet")
+        self.label = QLabel("Name: ")
+        self.name_input = QLineEdit()
         self.button = QPushButton("Clicked:")
-        self.button.pressed.connect(self.pressButton)
-        self.button.clicked.connect(self.clickedButton)
+        # self.button.pressed.connect(self.pressButton)
+        # self.button.clicked.connect(self.clickedButton)
+
+        self.button.setText("Set Name")
+        self.button.clicked.connect(self.alterName)
 
         h = QHBoxLayout()
         # h.addStretch(1)
-        h.addWidget(label)
-        h.addWidget(name_input)
+        h.addWidget(self.label)
+        h.addWidget(self.name_input)
 
         v = QVBoxLayout()
+        v.addWidget(self.text_label)
         # v.addStretch(1)
         v.addLayout(h)
         v.addWidget(self.button)
@@ -46,16 +50,24 @@ class MainWindow(QWidget):
 
 
 
-        self.setWindowTitle("Horizontal Layout")
+        self.setWindowTitle("Nothing clicked yet")
         self.show()
 
-    def clickedButton(self):
-        print("this button has been clicked - released")
+    def alterName(self):
+        inputted_text = self.name_input.text()
+        print(inputted_text)
+        our_string = "You've entered " + inputted_text
+        self.text_label.setText(our_string)
+        self.setWindowTitle(inputted_text + "'s Window")
 
-    def pressButton(self):
-        print("Button has been pressed")
-        self.counter += 1
-        self.button.setText("Clicked:"+  str(self.counter))
+
+    # def clickedButton(self):
+    #     print("this button has been clicked - released")
+    #
+    # def pressButton(self):
+    #     print("Button has been pressed")
+    #     self.counter += 1
+    #     self.button.setText("Clicked:"+  str(self.counter))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
