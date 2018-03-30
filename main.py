@@ -20,6 +20,9 @@ class Button:
         elif v == "√":
             value = float(self.results.text())
             self.results.setText(str(math.sqrt(value)))
+        elif v == "DEL":
+            current_value = self.results.text()
+            self.results.setText(current_value[:-1])
         else:
             current_value = self.results.text()
             new_value = current_value + str(v)
